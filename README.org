@@ -1,0 +1,42 @@
+#+TITLE: Magic-trust
+#+AUTHOR: Luis Fernando
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+LANGUAGE: es
+
+* Funcionamiento
+
+1) crear transaccion
+2) enviar transacion al ledger
+3) escuchar si ya se guardo
+4) devolver plata
+
+
+
+
+** microservicio 1:
+- crear una transaccion
+- guardarla en la base de datos
+- avisar a rabbit que se hizo una nueva transaccion
+
+
+** microservicio 2:
+- leer la transaccion de la bd
+- subir la transaccion al block chain
+- avisar a rabbit  que se subio la transaccion al blockchain
+** microservicio 3:
+- escuchar la nueva transaccion ver su id
+- comprobar si esta en el ledger
+- avisar que ya esta en el ledger
+
+
+** microservicio 4:
+- escuhar que ya esta en el ledger
+- devolver miota a billetera emisora
+
+
+
+
+
+* FLOW
+
+Usuario -> crea transaccion -> lee la transaccion

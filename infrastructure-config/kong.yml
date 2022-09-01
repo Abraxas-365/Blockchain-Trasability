@@ -1,0 +1,32 @@
+_format_version: "2.1"
+_transform: true
+
+services:
+
+ - name: magictrust-bouncer
+   host: magictrust-bouncer
+   port: 3001
+   path: /api/bouncer
+   routes:
+     - name: magictrust-bouncer-service-routes
+       paths:
+         - /api/bouncer/
+       methods:
+         - POST
+         - GET
+         - UPDATE
+       strip_path: true
+
+ - name: magictrust-catcher
+   host: magictrust-catcher
+   port: 3002
+   path: /api/catcher
+   routes:
+     - name: magictrust-catcher-service-routes
+       paths:
+         - /api/catcher/
+       methods:
+         - POST
+         - GET
+         - UPDATE
+       strip_path: true
