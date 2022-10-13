@@ -1,5 +1,6 @@
 import Web3 from "web3";
 import BlockchainRepository from "../../domain/ports/BlockchainRepo";
+import { postMessage } from "./postMessage";
 
 export class LacchainRepo implements BlockchainRepository {
     private uri: string

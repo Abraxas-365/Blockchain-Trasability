@@ -20,7 +20,7 @@ RUN mkdir /creator
 WORKDIR /creator
 COPY package.json .
 RUN npm install\
-    && npm install typescript -g && npm rebuild bcrypt --build-from-source
+    && npm install typescript -g
 
 COPY . .
 

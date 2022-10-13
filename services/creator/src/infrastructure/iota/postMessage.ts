@@ -2,7 +2,7 @@ import { BlockchainTransaction, IBlockchainTransaction } from "../../domain/mode
 import { IUser } from "../../domain/models/User";
 import { IotaRepo } from "./initIota";
 
-import { Client, hexToUtf8, initLogger, utf8ToHex } from '@iota/client';
+import { Client, utf8ToHex, SecretManager } from '@iota/client';
 
 export async function postMessage(this: IotaRepo, user: IUser, data: string): Promise<IBlockchainTransaction> {
     console.log("----POSTMESSAGE----");
@@ -12,7 +12,7 @@ export async function postMessage(this: IotaRepo, user: IUser, data: string): Pr
         nodes: [this.uri],
         localPow: true,
     });
-    const secretManager = { Mnemonic: user.company.iota.mnemonic };
+    const secretManager: SecretManager = { mnemonic: user.company.iota.mnemonic };
 
 
     // Create block with tagged payload
@@ -35,5 +35,5 @@ export async function postMessage(this: IotaRepo, user: IUser, data: string): Pr
         });
     console.log("data", data);
 
-    return new BlockchainTransaction(blockIdAndBlock[0], JSON.stringify(blockIdAndBlock[1]))
+    return new BlockchainTransaction(blockIdAndBlock[0], JSON.stringify(blockIdAndBlock[1]), "I")
 }

@@ -2,7 +2,7 @@ import { BlockchainTransaction } from "../../domain/models/BlockchainTransaction
 import { IUser } from "../../domain/models/User";
 import { LacchainRepo } from "./initLacchain";
 
-export async function sendTransaction(this: LacchainRepo, user: IUser, data: string): Promise<any> {
+export async function postMessage(this: LacchainRepo, user: IUser, data: string): Promise<any> {
     console.log("getting cout account");
     const transactionCount = await this.web3.eth.getTransactionCount(user.company.lacchain.wallet, "pending");
     console.log('---- transactionCount ----', transactionCount);
@@ -24,5 +24,5 @@ export async function sendTransaction(this: LacchainRepo, user: IUser, data: str
 
     let transactionId = await this.web3.eth.sendSignedTransaction(rawTransaction)
     console.log(transactionId)
-    return new BlockchainTransaction(transactionId, "")
+    return new BlockchainTransaction(transactionId, "", "L")
 }

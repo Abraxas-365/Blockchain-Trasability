@@ -12,10 +12,27 @@ services:
        paths:
          - /api/bouncer/
        methods:
+         - OPTIONS
          - POST
          - GET
          - UPDATE
        strip_path: true
+
+ - name: magictrust-super-bouncer
+   host: magictrust-super-bouncer
+   port: 3005
+   path: /api/super-bouncer
+   routes:
+     - name: magictrust-super-bouncer-service-routes
+       paths:
+         - /api/super-bouncer/
+       methods:
+         - OPTIONS
+         - POST
+         - GET
+         - UPDATE
+       strip_path: true
+
 
  - name: magictrust-catcher
    host: magictrust-catcher
@@ -26,6 +43,37 @@ services:
        paths:
          - /api/catcher/
        methods:
+         - OPTIONS
+         - POST
+         - GET
+         - UPDATE
+       strip_path: true
+
+ - name: magictrust-reporter
+   host: magictrust-reporter
+   port: 3004
+   path: /api/reports
+   routes:
+     - name: magictrust-reporter-service-routes
+       paths:
+         - /api/reports/
+       methods:
+         - OPTIONS
+         - POST
+         - GET
+         - UPDATE
+       strip_path: true
+
+ - name: magictrust-admin
+   host: magictrust-admin
+   port: 8020
+   path: /
+   routes:
+     - name: magictrust-admin-service-routes
+       paths:
+         - /
+       methods:
+         - OPTIONS
          - POST
          - GET
          - UPDATE

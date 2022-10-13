@@ -3,6 +3,7 @@ package application
 import (
 	"catcher/pkg/document/domain/models"
 	"catcher/pkg/document/domain/ports"
+	"catcher/pkg/document/domain/service"
 )
 
 type DocumentApplication interface {
@@ -12,11 +13,13 @@ type DocumentApplication interface {
 type application struct {
 	repo       ports.DocumetRepository
 	messaqueue ports.DocumentMessageQueue
+	service    service.Service
 }
 
-func DocumentApplicationConstructor(repo ports.DocumetRepository, messaqueue ports.DocumentMessageQueue) DocumentApplication {
+func DocumentApplicationConstructor(repo ports.DocumetRepository, messaqueue ports.DocumentMessageQueue, service service.Service) DocumentApplication {
 	return &application{
 		repo,
 		messaqueue,
+		service,
 	}
 }

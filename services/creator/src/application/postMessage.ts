@@ -10,7 +10,13 @@ export async function postMessage(this: Application, userId: string, data: strin
         :
         await this.lacchainRepository.postMessage(user, data)
 
-    await this.dataBaseRepository.updateTransaction(documentId, TransactionResult);
+
+    let status = "T"
+    if (user.company.tecnologies == "I") {
+        status = "P"
+    }
+
+    await this.dataBaseRepository.updateTransaction(documentId, TransactionResult, status);
 
     // //send event of transaction posted
     // this.messageQueue.postEvent(new EventInfo(new TransactionPosted(user.id, transactionId, iotaTransactionResult.messageId)))

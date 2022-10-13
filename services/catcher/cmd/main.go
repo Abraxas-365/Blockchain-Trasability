@@ -3,6 +3,7 @@ package main
 import (
 	rabbitMq "catcher/internal/rabbit"
 	"catcher/pkg/document/application"
+	"catcher/pkg/document/domain/service"
 	"catcher/pkg/document/infrastructure/database/mongo"
 	"catcher/pkg/document/infrastructure/rabbit"
 	"catcher/pkg/document/infrastructure/rest/handlers"
@@ -11,6 +12,7 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
@@ -24,12 +26,13 @@ func main() {
 		os.Exit(1)
 	}
 	documentMq := rabbit.NewMQPublisher(mq)
-
 	repo, _ := mongo.NewMongoRepository(mongoUri, "MagicTrust", 10, "documents")
-	application := application.DocumentApplicationConstructor(repo, documentMq)
+	service := service.ServiceConstructor(repo)
+	application := application.DocumentApplicationConstructor(repo, documentMq, service)
 
 	handler := handlers.NewHandler(application)
 	app := fiber.New()
+	app.Use(cors.New())
 	app.Use(logger.New())
 	routes.DocumentRoute(app, handler) //User routes
 

@@ -14,7 +14,10 @@ export default class Application implements IApplication {
     protected lacchainRepository: BlockchainRepository
     protected messageQueue: MessageQueue
 
-    constructor(dataBaseRepository: DataBaseRepository, iotaRepo: BlockchainRepository, lacchainRepo: BlockchainRepository, messageQueue: MessageQueue) {
+    constructor(dataBaseRepository: DataBaseRepository,
+        iotaRepo: BlockchainRepository,
+        lacchainRepo: BlockchainRepository,
+        messageQueue: MessageQueue) {
         this.dataBaseRepository = dataBaseRepository;
         this.iotaRepository = iotaRepo;
         this.lacchainRepository = lacchainRepo

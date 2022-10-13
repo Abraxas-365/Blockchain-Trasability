@@ -47,3 +47,14 @@ func (p Password) Validate() bool {
 func (p Password) EqualTo(other Password) bool {
 	return p == other
 }
+
+//Authentication
+
+type Authentication struct {
+	TwoFactorAuthentication TwoFactorAuthentication `bson:"twoFactorAuthentication" json:"twoFactorAuthentication"`
+}
+
+type TwoFactorAuthentication struct {
+	Active bool   `bson:"active" json:"active"`
+	Token  string `bson:"token" json:"token"`
+}

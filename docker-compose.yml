@@ -114,8 +114,6 @@ services:
       - 3003
     depends_on:
       - mongo
-    networks:
-      - magic-trust
     entrypoint:
       - dockerize
       - -timeout
@@ -123,8 +121,86 @@ services:
       - -wait
       - tcp://rabbitmq:15672
     command: node ./dist/app.js
+    networks:
+      - magic-trust
+
+  magictrust-checker:
+    environment:
+      MQ_URI: amqp://admin:admin@rabbitmq:5672/
+      MONGODB_URI: mongodb://root:example@mongo:27017/
+    build: ./services/checker/.
+    restart: always
+    ports:
+      - 3003
+    depends_on:
+      - mongo
+    entrypoint:
+      - dockerize
+      - -timeout
+      - 60s
+      - -wait
+      - tcp://rabbitmq:15672
+    command: node ./dist/app.js
+    networks:
+      - magic-trust
 
 
+  magictrust-super-bouncer:
+    environment:
+      MQ_URI: amqp://admin:admin@rabbitmq:5672/
+      MONGODB_URI: mongodb://root:example@mongo:27017/
+    build: ./services/superBouncer/.
+    restart: always
+    ports:
+      - 3005
+    depends_on:
+      - mongo
+    entrypoint:
+      - dockerize
+      - -timeout
+      - 60s
+      - -wait
+      - tcp://rabbitmq:15672
+    command: node ./dist/app.js
+    networks:
+      - magic-trust
+
+
+  magictrust-reporter:
+    environment:
+      MQ_URI: amqp://admin:admin@rabbitmq:5672/
+      MONGODB_URI: mongodb://root:example@mongo:27017/
+    build: ./services/reporter/.
+    restart: always
+    ports:
+      - 3004
+    depends_on:
+      - mongo
+    entrypoint:
+      - dockerize
+      - -timeout
+      - 60s
+      - -wait
+      - tcp://rabbitmq:15672
+    command: ./main
+    networks:
+      - magic-trust
+
+  magictrust-admin:
+    environment:
+      MQ_URI: amqp://admin:admin@rabbitmq:5672/
+      MONGODB_URI: mongodb://root:example@mongo:27017/
+      DJANGO_SUPERUSER_USERNAME: admin
+      DJANGO_SUPERUSER_PASSWORD: admin
+      DJANGO_SUPERUSER_EMAIL: admin@example.com
+    build: ./services/djangoAdmin/.
+    restart: always
+    ports:
+      - 8020
+    depends_on:
+      - mongo
+    networks:
+      - magic-trust
 
 networks:
   magic-trust:

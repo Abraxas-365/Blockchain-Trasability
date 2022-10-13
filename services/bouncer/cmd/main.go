@@ -9,6 +9,7 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
@@ -22,6 +23,7 @@ func main() {
 
 	handler := handlers.NewHandler(application)
 	app := fiber.New()
+	app.Use(cors.New())
 	app.Use(logger.New())
 	routes.Routes(app, handler) //User routes
 
