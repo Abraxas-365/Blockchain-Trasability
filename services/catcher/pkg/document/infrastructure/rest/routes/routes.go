@@ -9,6 +9,6 @@ import (
 
 func DocumentRoute(app *fiber.App, handler handlers.DocumentHandler) {
 	users := app.Group("/api/catcher")
-	/*update user*/
 	users.Post("/create", auth.JWTProtected(), handler.CreateDocument)
+	users.Post("/create-batch", auth.JWTProtected(), handler.CreateTextBatch)
 }

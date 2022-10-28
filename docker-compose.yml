@@ -186,21 +186,6 @@ services:
     networks:
       - magic-trust
 
-  magictrust-admin:
-    environment:
-      MQ_URI: amqp://admin:admin@rabbitmq:5672/
-      MONGODB_URI: mongodb://root:example@mongo:27017/
-      DJANGO_SUPERUSER_USERNAME: admin
-      DJANGO_SUPERUSER_PASSWORD: admin
-      DJANGO_SUPERUSER_EMAIL: admin@example.com
-    build: ./services/djangoAdmin/.
-    restart: always
-    ports:
-      - 8020
-    depends_on:
-      - mongo
-    networks:
-      - magic-trust
 
 networks:
   magic-trust:

@@ -9,6 +9,7 @@ import (
 type DocumentHandler interface {
 	CreateDocument(c *fiber.Ctx) error
 	CreateText(c *fiber.Ctx) error
+	CreateTextBatch(c *fiber.Ctx) error
 }
 
 type handler struct {

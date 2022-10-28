@@ -8,6 +8,7 @@ import (
 
 type DocumentApplication interface {
 	Create(doc models.Document) error
+	CreateInBatch(doc models.Documents) error
 }
 
 type application struct {

@@ -8,8 +8,6 @@ import (
 
 func Routes(app *fiber.App, handler handlers.Handler) {
 	users := app.Group("/api/bouncer")
-	/*Login user*/
-	users.Post("/login", handler.LoginUser)
 	/*Register user*/
 	users.Post("/register", handler.CreateUser)
 	/*Create company*/

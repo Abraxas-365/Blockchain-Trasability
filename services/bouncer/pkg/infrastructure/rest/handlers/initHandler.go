@@ -7,7 +7,6 @@ import (
 )
 
 type Handler interface {
-	LoginUser(c *fiber.Ctx) error
 	CreateUser(c *fiber.Ctx) error
 	CreateCompany(c *fiber.Ctx) error
 }

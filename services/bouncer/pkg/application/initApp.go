@@ -7,7 +7,6 @@ import (
 )
 
 type Application interface {
-	LoginUser(email string, password string) (models.UserQuery, string, error)
 	CreateUser(user models.User) (bool, error)
 	CreateCompany(company models.Company) (bool, error)
 }
