@@ -6,7 +6,6 @@ import { Client, utf8ToHex, SecretManager } from '@iota/client';
 
 export async function postMessage(this: IotaRepo, user: IUser, data: string): Promise<IBlockchainTransaction> {
     console.log("----POSTMESSAGE----");
-
     const client = new Client({
         // Insert your node URL in the .env.
         nodes: [this.uri],
@@ -33,6 +32,7 @@ export async function postMessage(this: IotaRepo, user: IUser, data: string): Pr
                 amount: '1000000',
             },
         });
+
     console.log("data", data);
 
     return new BlockchainTransaction(blockIdAndBlock[0], JSON.stringify(blockIdAndBlock[1]), "I")

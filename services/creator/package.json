@@ -14,6 +14,7 @@
     "@types/node": "^18.7.13",
     "@types/uuid": "^8.3.4",
     "amqplib": "^0.10.2",
+    "cors": "^2.8.5",
     "mongodb": "^4.9.0",
     "mongoose": "^6.5.2",
     "typescript": "^4.7.4",
