@@ -16,7 +16,7 @@ services:
       KONG_DECLARATIVE_CONFIG: "/opt/kong/kong.yml"
       command: "kong start"
     ports:
-      - "8000:8000"
+      - "80:8000"
       - "8443:8443"
       - "8001:8001"
       - "8444:8444"
@@ -186,6 +186,15 @@ services:
     networks:
       - magic-trust
 
+
+
+  magictrust-swagger:
+    build: ./services/swagger/.
+    restart: always
+    ports:
+      - 3010
+    networks:
+      - magic-trust
 
 networks:
   magic-trust:

@@ -64,14 +64,14 @@ services:
          - UPDATE
        strip_path: true
 
- - name: magictrust-admin
-   host: magictrust-admin
-   port: 8020
-   path: /
+ - name: magictrust-swagger
+   host: magictrust-swagger
+   port: 3010
+   path: /doc
    routes:
-     - name: magictrust-admin-service-routes
+     - name: magictrust-swagger-service-routes
        paths:
-         - /
+         - /doc
        methods:
          - OPTIONS
          - POST

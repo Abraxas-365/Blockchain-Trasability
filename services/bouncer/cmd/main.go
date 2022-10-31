@@ -25,7 +25,8 @@ func main() {
 	app := fiber.New()
 	app.Use(cors.New())
 	app.Use(logger.New())
-	routes.Routes(app, handler) //User routes
+	routes.Routes(app, handler) // User routes
+    
 
 	app.Listen(":3001")
 }
