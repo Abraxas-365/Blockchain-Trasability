@@ -26,7 +26,6 @@ func main() {
 	app.Use(cors.New())
 	app.Use(logger.New())
 	routes.Routes(app, handler) // User routes
-    
 
 	app.Listen(":3001")
 }

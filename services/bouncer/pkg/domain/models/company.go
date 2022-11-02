@@ -11,6 +11,8 @@ type Company struct {
 	Lacchain    LacchainWallet `bson:"lacchain" json:"lacchain"`
 }
 
+type Companies *[]Company
+
 func (c *Company) New() Company {
 	c.ID = uuid.New().String()
 	return *c
