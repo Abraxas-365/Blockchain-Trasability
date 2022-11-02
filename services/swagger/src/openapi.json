@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Swagger Petstore - OpenAPI 3.0",
+    "title": "Swagger MagicTrust - OpenAPI 3.0",
     "description": "This is the sagger for magictrust",
     "version": "1.0.11"
   },
@@ -23,9 +23,7 @@
   "paths": {
     "/super-bouncer/login": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "login user",
         "description": "login user",
         "requestBody": {
@@ -53,9 +51,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "two factor auth",
         "requestBody": {
           "description": "login user",
@@ -83,9 +79,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "Creator"
-        ],
+        "tags": ["Creator"],
         "summary": "create new text",
         "requestBody": {
           "description": "new text",
@@ -119,9 +113,7 @@
             "bearerAuth": []
           }
         ],
-        "tags": [
-          "Creator"
-        ],
+        "tags": ["Creator"],
         "summary": "create batch new text",
         "requestBody": {
           "description": "new text batch",
