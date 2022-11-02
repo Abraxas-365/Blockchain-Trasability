@@ -12,4 +12,7 @@ func Routes(app *fiber.App, handler handlers.Handler) {
 	users.Post("/register", handler.CreateUser)
 	/*Create company*/
 	users.Post("/create/company", handler.CreateCompany)
+
+	/*Get All companies*/
+	users.Get("/get/company", handler.GetCompanies)
 }
