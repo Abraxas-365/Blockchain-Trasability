@@ -15,4 +15,7 @@ func Routes(app *fiber.App, handler handlers.Handler) {
 
 	/*Get All companies*/
 	users.Get("/get/company", handler.GetCompanies)
+
+	/*Get All users*/
+	users.Get("/get/users", handler.GetUsers)
 }

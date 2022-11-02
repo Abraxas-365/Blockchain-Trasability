@@ -19,6 +19,8 @@ type UserQuery struct {
 	Company string `bson:"company" json:"company"`
 }
 
+type Users []*User
+
 func (u *User) New() User {
 	u.Id = uuid.New().String()
 	u.Rol = 0

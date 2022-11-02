@@ -7,4 +7,5 @@ type Repository interface {
 	GetPrivateUser(document string, value interface{}) (models.User, bool, error)
 	CreateCompany(company models.Company) (bool, error)
 	GetCompanies() (models.Companies, error)
+	GetUsers() (models.Users, error)
 }

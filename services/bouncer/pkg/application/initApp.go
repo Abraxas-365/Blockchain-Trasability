@@ -10,6 +10,7 @@ type Application interface {
 	CreateUser(user models.User) (bool, error)
 	CreateCompany(company models.Company) (bool, error)
 	GetCompanies() (models.Companies, error)
+	GetUsers() (models.Users, error)
 }
 
 type application struct {
