@@ -10,7 +10,7 @@ import (
 func (r *repository) GetCompanies() (models.Companies, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), r.timeout)
 	defer cancel()
-	collection := r.client.Database(r.database).Collection("users")
+	collection := r.client.Database(r.database).Collection("companies")
 	var companies models.Companies
 	currsor, err := collection.Find(ctx, bson.D{})
 	if err != nil {
@@ -18,7 +18,7 @@ func (r *repository) GetCompanies() (models.Companies, error) {
 	}
 
 	if err := currsor.All(ctx, &companies); err != nil {
-		return nil, err
+		return models.Companies{}, err
 	}
 
 	return companies, nil
