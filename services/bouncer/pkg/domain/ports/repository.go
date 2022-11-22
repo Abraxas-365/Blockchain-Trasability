@@ -8,4 +8,8 @@ type Repository interface {
 	CreateCompany(company models.Company) (bool, error)
 	GetCompanies() (models.Companies, error)
 	GetUsers() (models.Users, error)
+	EditUser(edit models.User) error
+	EditCompany(edit models.Company) error
+	DeleteCompany(companyId string) error
+	DeleteUser(companyId string) error
 }

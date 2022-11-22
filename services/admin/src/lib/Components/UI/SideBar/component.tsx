@@ -105,7 +105,7 @@ const Sidebar = () => {
               Data
             </Typography>
             <Item title="Users" to="/users" icon={<LibraryMusicIcon />} selected={selected} setSelected={setSelected} />
-            <Item title="Canciones" to="/song" icon={<AlbumIcon />} selected={selected} setSelected={setSelected} />
+            <Item title="Empresas" to="/empresas" icon={<AlbumIcon />} selected={selected} setSelected={setSelected} />
           </Box>
         </Menu>
       </ProSidebar>

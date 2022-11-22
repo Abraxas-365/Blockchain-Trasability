@@ -11,6 +11,10 @@ type Application interface {
 	CreateCompany(company models.Company) (bool, error)
 	GetCompanies() (models.Companies, error)
 	GetUsers() (models.Users, error)
+	EditUser(edit models.User) error
+	EditCompany(edit models.Company) error
+	DeleteUser(userId string) error
+	DeleteCompany(userId string) error
 }
 
 type application struct {

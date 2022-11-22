@@ -11,6 +11,10 @@ type Handler interface {
 	CreateCompany(c *fiber.Ctx) error
 	GetCompanies(c *fiber.Ctx) error
 	GetUsers(c *fiber.Ctx) error
+	EditUser(c *fiber.Ctx) error
+	EditCompany(c *fiber.Ctx) error
+	DeleteUser(c *fiber.Ctx) error
+	DeleteCompany(c *fiber.Ctx) error
 }
 
 type handler struct {

@@ -1,15 +1,17 @@
 import { Box, IconButton, useTheme } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import React from "react";
 import ControlPointDuplicateIcon from "@mui/icons-material/ControlPointDuplicate";
 import { useNavigate } from "react-router-dom";
-import { useGetUsers } from "../utils";
-import { tokens } from "../../../theme";
 import Header from "../../../lib/Components/Share/Header";
-import UserActions from "../Components/UsersActions";
-const ShowUsers = () => {
-  const { users, isLoading } = useGetUsers();
+import { tokens } from "../../../theme";
+import { useGetEmpresas } from "../utils";
+import { DataGrid } from "@mui/x-data-grid";
+import EmpresasActions from "../Components/EmpresasActions";
+
+const ShowEmpresas = () => {
+  const { empresas, isLoading } = useGetEmpresas();
   if (!isLoading) {
-    console.log(users);
+    console.log(empresas);
   }
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -21,22 +23,46 @@ const ShowUsers = () => {
     },
 
     {
-      field: "email",
-      headerName: "Email",
+      field: "name",
+      headerName: "Name",
       cellClassName: "name-column--cell",
       flex: 1,
     },
     {
-      field: "company",
-      headerName: "Company",
+      field: "status",
+      headerName: "Status",
       headerAlign: "left",
       flex: 1,
       align: "left",
     },
     {
+      field: "tecnologies",
+      headerName: "Tecnologies",
+      headerAlign: "left",
+      flex: 1,
+      align: "left",
+    },
+    {
+      field: "iotamnemonic}",
+      headerName: "Mnemonic",
+      headerAlign: "left",
+      flex: 1,
+      align: "left",
+      valueGetter: (params) => {
+        console.log({ params });
+        let result = [];
+        if (params.row.iota.mnemonic) {
+          result.push(params.row.iota.mnemonic);
+        } else {
+          result = ["Unknown"];
+        }
+        return result.join(", ");
+      },
+    },
+    {
       field: "actions",
       headerName: "Actions",
-      renderCell: (params) => <UserActions {...{ params }} />,
+      renderCell: (params) => <EmpresasActions {...{ params }} />,
       flex: 1,
     },
   ];
@@ -50,11 +76,11 @@ const ShowUsers = () => {
         </Box>
         <IconButton
           onClick={() => {
-            navigate("/newUser");
+            navigate("/newEmpresa");
           }}
         >
           <ControlPointDuplicateIcon />
-          <p style={{ color: colors.grey[100] }}>Add User</p>
+          <p style={{ color: colors.grey[100] }}>Add Empresa</p>
         </IconButton>
       </Box>
       <Box
@@ -86,10 +112,10 @@ const ShowUsers = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={users} columns={columns} />
+        <DataGrid checkboxSelection rows={empresas} columns={columns} />
       </Box>
     </Box>
   );
 };
 
-export default ShowUsers;
+export default ShowEmpresas;

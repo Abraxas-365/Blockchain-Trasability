@@ -72,7 +72,7 @@
         }
       }
     },
-    "/catcher/create": {
+    "/catcher/create-single": {
       "post": {
         "security": [
           {
@@ -88,6 +88,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "id_registro": {
+                    "type": "number",
+                    "example": 1234
+                  },
                   "data": {
                     "type": "string",
                     "example": "new data"
@@ -124,6 +128,10 @@
                 "items": {
                   "type": "object",
                   "properties": {
+                    "id_registro": {
+                      "type": "number",
+                      "example": 1234
+                    },
                     "data": {
                       "type": "string",
                       "example": "new data"

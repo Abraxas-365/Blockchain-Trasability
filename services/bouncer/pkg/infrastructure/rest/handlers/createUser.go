@@ -19,7 +19,7 @@ func (h *handler) CreateUser(c *fiber.Ctx) error {
 	if check, err := h.app.CreateUser(newUser.New()); !check {
 		return c.Status(500).JSON(fiber.Map{
 			"timestamp": time.Now(),
-			"error":     fiber.ErrBadRequest.Message,
+			"error":     err,
 		})
 
 	} else if err != nil {

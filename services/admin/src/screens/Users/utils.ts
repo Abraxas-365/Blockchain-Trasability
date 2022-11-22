@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { NavigateFunction } from "react-router-dom";
-import { apiUsers } from "../../lib/Data/api/apiCalls";
+import { apiBouncer } from "../../lib/Data/api/apiCalls";
 
 interface IAuthentiction {
   avtive: boolean;
   token: string;
 }
+
 export interface IUser {
-  id?: number;
+  id?: string;
   role?: number;
   email?: string;
   company?: string;
@@ -17,7 +18,7 @@ export interface IUser {
 }
 
 export const handleFormSubmit = async (values: IUser, navigate: NavigateFunction) => {
-  await apiUsers.post(`/register`, values);
+  await apiBouncer.post(`/register`, values);
   navigate("/users");
 };
 
@@ -26,7 +27,7 @@ export const useGetUsers = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const getUsers = async () => {
-    const { data } = await apiUsers.get("/get/users");
+    const { data } = await apiBouncer.get("/get/users");
     setUsers(data);
     setIsLoading(false);
   };

@@ -9,17 +9,18 @@ import { handleFormSubmit } from "../utils";
 const NewUser = () => {
   const navigate = useNavigate();
   const initialValues = {
-    name: "",
     email: "",
-    password: "",
+    role: 0,
     company: "",
+    password: "",
+    name: "",
   };
 
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   return (
     <Box m="20px">
-      <Header title="CREATE ALBUM" subtitle="Create a New Album" />
+      <Header title="Create User" subtitle="Create  New User" />
       <Formik
         onSubmit={(fields) => {
           handleFormSubmit(fields, navigate);
@@ -54,11 +55,11 @@ const NewUser = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="email"
+                label="Email"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.email}
-                name="artist"
+                name="email"
                 error={!!touched.email && !!errors.email}
                 helperText={touched.email && errors.email}
                 sx={{ gridColumn: "span 2" }}
@@ -66,12 +67,12 @@ const NewUser = () => {
               <TextField
                 fullWidth
                 variant="filled"
-                type="number"
-                label="Year"
+                type="text"
+                label="Password"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.password}
-                name="year"
+                name="password"
                 error={!!touched.company && !!errors.company}
                 helperText={touched.company && errors.company}
                 sx={{ gridColumn: "span 4" }}
@@ -80,19 +81,32 @@ const NewUser = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="url"
+                label="Company"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.company}
-                name="url"
+                name="company"
                 error={!!touched.company && !!errors.company}
                 helperText={touched.company && errors.company}
+                sx={{ gridColumn: "span 4" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="number"
+                label="Role"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.role}
+                name="role"
+                error={!!touched.role && !!errors.role}
+                helperText={touched.role && errors.role}
                 sx={{ gridColumn: "span 4" }}
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Save Album
+                Save User
               </Button>
             </Box>
           </form>
@@ -104,9 +118,10 @@ const NewUser = () => {
 
 const checkoutSchema = yup.object().shape({
   name: yup.string().required("required"),
-  artist: yup.string().required("required"),
-  year: yup.number().required("Year is required").min(2010).max(2021),
-  url: yup.string().url().required("required"),
+  company: yup.string().required("required"),
+  password: yup.string().required("required"),
+  email: yup.string().required("required"),
+  role: yup.number().required("required").min(0).max(3),
 });
 
 export default NewUser;

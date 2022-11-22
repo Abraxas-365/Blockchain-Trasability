@@ -17,6 +17,7 @@ type Document struct {
 	TransactionId     string    `bson:"transaction_id" json:"transaction_id"` //id del documento una vez estando en el blockchain
 	TransactionResult string    `bson:"transaction_result" json:"transaction_result"`
 	Status            string    `bson:"status" json:"status"`
+	IdRegistro        int       `bson:"id_registro" json:"id_registro"`
 	Data              string    `bson:"data" json:"data"`         // data a registrar en el blockchain
 	Platform          string    `bson:"platform" json:"platform"` // que plataforma se uso para registrar en el blockchain
 	UplodedDate       time.Time `bson:"upload_date" json:"upload_date"`

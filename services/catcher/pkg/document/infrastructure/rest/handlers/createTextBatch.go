@@ -9,11 +9,13 @@ import (
 )
 
 func (h *handler) CreateTextBatch(c *fiber.Ctx) error {
+	newDocuments := struct {
+		ContentList models.Documents `json:"contentList"`
+	}{}
 	userTokenData, err := auth.ExtractTokenMetadata(c)
 	if err != nil {
 		return c.Status(500).SendString(err.Error())
 	}
-	newDocuments := new(models.Documents)
 	if err := c.BodyParser(&newDocuments); err != nil {
 		return c.Status(fiber.ErrBadRequest.Code).JSON(fiber.Map{
 			"timestamp": time.Now(),
@@ -21,10 +23,10 @@ func (h *handler) CreateTextBatch(c *fiber.Ctx) error {
 			"message":   err.Error(),
 		})
 	}
-	for _, newDocument := range *newDocuments {
+	for _, newDocument := range newDocuments.ContentList {
 		newDocument.New(userTokenData.ID, "T")
 	}
-	if err := h.app.CreateInBatch(*newDocuments); err != nil {
+	if err := h.app.CreateInBatch(newDocuments.ContentList); err != nil {
 		return c.Status(500).JSON(fiber.Map{
 			"timestamp": time.Now(),
 			"error":     fiber.ErrBadRequest.Message,

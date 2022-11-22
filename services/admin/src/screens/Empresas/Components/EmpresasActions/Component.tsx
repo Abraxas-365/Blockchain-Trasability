@@ -3,8 +3,9 @@ import { Box, IconButton, Tooltip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { apiBouncer } from "../../../../lib/Data/api/apiCalls";
 
-const UserActions = ({ params }: any) => {
+const EmpresasActions = ({ params }: any) => {
   const navigate = useNavigate();
+  //TODO: change api path
   return (
     <Box>
       <Tooltip title="Edit this album">
@@ -17,7 +18,7 @@ const UserActions = ({ params }: any) => {
         </IconButton>
       </Tooltip>
 
-      <Tooltip title="Delete this user">
+      <Tooltip title="Delete this empresa">
         <IconButton
           onClick={async () => {
             await apiBouncer.delete(`/delete/${params.row.id}`);
@@ -30,4 +31,4 @@ const UserActions = ({ params }: any) => {
     </Box>
   );
 };
-export default UserActions;
+export default EmpresasActions;
