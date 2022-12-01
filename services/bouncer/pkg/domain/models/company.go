@@ -9,6 +9,7 @@ type Company struct {
 	Tecnologies string         `bson:"tecnologies" json:"tecnologies"`
 	Iota        IotaWallet     `bson:"iota" json:"iota"`
 	Lacchain    LacchainWallet `bson:"lacchain" json:"lacchain"`
+	ApiHook     ApiHook        `bson:"api_hook" json:"api_hook"`
 }
 
 type Companies []*Company

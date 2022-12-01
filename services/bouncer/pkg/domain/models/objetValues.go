@@ -58,3 +58,9 @@ type TwoFactorAuthentication struct {
 	Active bool   `bson:"active" json:"active"`
 	Token  string `bson:"token" json:"token"`
 }
+
+type ApiHook struct {
+	Url      string `bson:"url" json:"url"`
+	Email    string `bson:"email" json:"email"`
+	Password string `bson:"password" json:"password"`
+}

@@ -1,9 +1,7 @@
-import { IIotaWallet } from "./IotaWallet";
-import { ILacchainWallet } from "./LacchainWallet";
-
 export class User implements IUser {
   public tecnologies: string;
   public company: ICompany;
+  public api_hook: IApiHook;
   public _id?: any;
 
   constructor(tecnologies: string, company: ICompany, id?: any) {
@@ -23,6 +21,11 @@ interface ICompany {
   _id: string;
   name: string;
   tecnologies: string;
-  iota: IIotaWallet;
-  lacchain: ILacchainWallet;
+  api_hook: IApiHook;
+}
+
+interface IApiHook {
+  url: string;
+  email: string;
+  password: string;
 }

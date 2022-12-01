@@ -1,17 +1,16 @@
-version: '3.9'
+version: "3.9"
 
 services:
-
   kong:
     image: kong:2.5.0-alpine
     hostname: kong
     container_name: kong
     environment:
-      KONG_DATABASE: 'off'
-      KONG_PROXY_ACCESS_LOG: '/dev/stdout'
-      KONG_ADMIN_ACCESS_LOG: '/dev/stdout'
-      KONG_PROXY_ERROR_LOG: '/dev/stderr'
-      KONG_ADMIN_ERROR_LOG: '/dev/stderr'
+      KONG_DATABASE: "off"
+      KONG_PROXY_ACCESS_LOG: "/dev/stdout"
+      KONG_ADMIN_ACCESS_LOG: "/dev/stdout"
+      KONG_PROXY_ERROR_LOG: "/dev/stderr"
+      KONG_ADMIN_ERROR_LOG: "/dev/stderr"
       KONG_ADMIN_LISTEN: "0.0.0.0:8001, 0.0.0.0:8444 ssl"
       KONG_DECLARATIVE_CONFIG: "/opt/kong/kong.yml"
       command: "kong start"
@@ -21,12 +20,11 @@ services:
       - "8001:8001"
       - "8444:8444"
     volumes:
-        - ./infrastructure-config:/opt/kong
+      - ./infrastructure-config:/opt/kong
     depends_on:
       - mongo
     networks:
       - magic-trust
-
 
   rabbitmq:
     # image: rabbitmq:3-management-alpine
@@ -36,13 +34,13 @@ services:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin
     ports:
-        - 5672:5672
-        - 15672:15672
+      - 5672:5672
+      - 15672:15672
     volumes:
-        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     networks:
-        - magic-trust
+      - magic-trust
 
   mongo:
     image: mongo
@@ -58,7 +56,6 @@ services:
       - 27018:27017
     networks:
       - magic-trust
-
 
   magictrust-bouncer:
     environment:
@@ -144,7 +141,6 @@ services:
     networks:
       - magic-trust
 
-
   magictrust-super-bouncer:
     environment:
       MQ_URI: amqp://admin:admin@rabbitmq:5672/
@@ -165,7 +161,6 @@ services:
     networks:
       - magic-trust
 
-
   magictrust-reporter:
     environment:
       MQ_URI: amqp://admin:admin@rabbitmq:5672/
@@ -185,8 +180,6 @@ services:
     command: ./main
     networks:
       - magic-trust
-
-
 
   magictrust-swagger:
     build: ./services/swagger/.

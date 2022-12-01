@@ -1,8 +1,6 @@
 import DataBaseRepository from "../../domain/ports/DataBaseRepo";
 import * as mongoDB from "mongodb";
-import { updateTransaction } from "./updateTransaction";
-import { getUserById } from "./getUserById";
-// import { getUserById } from "./getUserById";
+import { getDocumentById } from "./getDocumentById";
 
 export class MongoRepo implements DataBaseRepository {
   public client: mongoDB.MongoClient;
@@ -13,6 +11,5 @@ export class MongoRepo implements DataBaseRepository {
     this.client = new mongoDB.MongoClient(mongoUri);
   }
 
-  public updateTransaction = updateTransaction.bind(this);
-  public getUserById = getUserById.bind(this);
+  public getDocumentById = getDocumentById.bind(this);
 }

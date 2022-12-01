@@ -20,3 +20,10 @@ export class TransactionPosted implements IEvent {
     return "posted";
   }
 }
+
+export interface ITransactionPosted extends IEvent {
+  event: {
+    user_id: string;
+    docuement_id: string;
+  };
+}

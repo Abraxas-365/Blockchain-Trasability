@@ -5,5 +5,5 @@ import (
 )
 
 func (a *application) GetDocumentsReport(userId string) (models.Reports, error) {
-	return a.repo.GetAllReportsByUserAndType("user_id", userId, "D")
+	return a.repo.GetAllReportsByUserAndType("user_id", userId, "T")
 }
