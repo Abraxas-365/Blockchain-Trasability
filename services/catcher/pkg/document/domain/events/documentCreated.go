@@ -1,9 +1,9 @@
 package events
 
 type DocumentCreated struct {
-	UserId     string `json:"user_id"`
-	DocumentId string `json:"document_id"`
-	Data       string `json:"data"`
+	UserId     string      `json:"user_id"`
+	DocumentId string      `json:"document_id"`
+	Data       interface{} `json:"data"`
 }
 
 func (u DocumentCreated) Name() string {
