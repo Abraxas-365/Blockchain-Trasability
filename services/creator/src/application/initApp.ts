@@ -4,7 +4,7 @@ import MessageQueue from "../domain/ports/MessgeQueue";
 import { postMessage } from "./postMessage";
 
 export interface IApplication {
-  postMessage(userId: string, data: string, documentId: string): any;
+  postMessage(userId: string, data: {}, documentId: string): any;
 }
 
 export default class Application implements IApplication {
@@ -13,12 +13,7 @@ export default class Application implements IApplication {
   protected lacchainRepository: BlockchainRepository;
   protected messageQueue: MessageQueue;
 
-  constructor(
-    dataBaseRepository: DataBaseRepository,
-    iotaRepo: BlockchainRepository,
-    lacchainRepo: BlockchainRepository,
-    messageQueue: MessageQueue
-  ) {
+  constructor(dataBaseRepository: DataBaseRepository, iotaRepo: BlockchainRepository, lacchainRepo: BlockchainRepository, messageQueue: MessageQueue) {
     this.dataBaseRepository = dataBaseRepository;
     this.iotaRepository = iotaRepo;
     this.lacchainRepository = lacchainRepo;

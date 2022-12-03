@@ -2,7 +2,7 @@ import { EventInfo } from "../domain/events/initEvent";
 import { TransactionPosted } from "../domain/events/transactionPosted";
 import Application from "./initApp";
 
-export async function postMessage(this: Application, userId: string, data: string, documentId: string): Promise<any> {
+export async function postMessage(this: Application, userId: string, data: {}, documentId: string): Promise<any> {
   // get user from database
   let user = await this.dataBaseRepository.getUserById(userId);
   // //send to iota
