@@ -6,7 +6,7 @@ export async function postMessage(this: Application, userId: string, data: {}, d
   // get user from database
   let user = await this.dataBaseRepository.getUserById(userId);
   // //send to iota
-  let TransactionResult = user.company.tecnologies == "I" ? await this.iotaRepository.postMessage(user, data) : await this.lacchainRepository.postMessage(user, data);
+  let TransactionResult = user.company.tecnologies == "I" ? await this.iotaRepository.postMessage(user, JSON.stringify(data)) : await this.lacchainRepository.postMessage(user, JSON.stringify(data));
 
   let status = "T";
   //this is no longer needed
