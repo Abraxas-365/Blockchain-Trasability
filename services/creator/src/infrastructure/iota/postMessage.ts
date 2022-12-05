@@ -24,17 +24,17 @@ export async function postMessage(this: IotaRepo, user: IUser, data: {}): Promis
       end: 2,
     },
   });
-  console.log("address:", addresses);
+  console.log("address:", addresses[0]);
   // We prepare the transaction
   // Insert the output address and amount to spend. The amount cannot be zero.
   try {
     const blockIdAndBlock = await client.buildAndPostBlock(secretManager, {
       tag: utf8ToHex("MagicTrust"),
       data: utf8ToHex("Tangle"),
-      // output: {
-      //   address: addresses[0],
-      //   amount: "2000000",
-      // },
+      output: {
+        address: addresses[0],
+        amount: "1000000",
+      },
     });
     console.log("data", data);
     return new BlockchainTransaction(blockIdAndBlock[0], JSON.stringify(blockIdAndBlock[1]), "I");
