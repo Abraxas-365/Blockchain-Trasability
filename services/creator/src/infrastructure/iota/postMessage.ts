@@ -41,4 +41,5 @@ export async function postMessage(this: IotaRepo, user: IUser, data: {}): Promis
   } catch (err: any) {
     console.log("error:", err);
   }
+  return new BlockchainTransaction("", "", "I");
 }
