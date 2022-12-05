@@ -12,7 +12,7 @@ export async function postMessage(this: IotaRepo, user: IUser, data: {}): Promis
     localPow: true,
   });
   const mnemonic_manager: MnemonicSecretManager = {
-    Mnemonic: user.company.iota.mnemonic,
+    memonic: user.company.iota.mnemonic,
   };
   const secretManager: SecretManager = mnemonic_manager;
   console.log("secretManager:", secretManager);
