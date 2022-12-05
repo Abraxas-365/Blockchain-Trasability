@@ -11,7 +11,8 @@ export async function postMessage(this: IotaRepo, user: IUser, data: {}): Promis
     nodes: [this.uri],
     localPow: true,
   });
-  const secretManager: SecretManager = { mnemonic: user.company.iota.mnemonic };
+  const secretManager: SecretManager = { Mnemonic: user.company.iota.mnemonic };
+  console.log("secretManager:", secretManager);
 
   // Create block with tagged payload
   const addresses = await client.generateAddresses(secretManager, {
@@ -20,11 +21,12 @@ export async function postMessage(this: IotaRepo, user: IUser, data: {}): Promis
       end: 2,
     },
   });
+  console.log("address:", addresses);
   // We prepare the transaction
   // Insert the output address and amount to spend. The amount cannot be zero.
   const blockIdAndBlock = await client.buildAndPostBlock(secretManager, {
     tag: utf8ToHex("MagicTrust"),
-    data: utf8ToHex(JSON.stringify(data)),
+    data: utf8ToHex("gola"),
     output: {
       address: addresses[0],
       amount: "1000000",
