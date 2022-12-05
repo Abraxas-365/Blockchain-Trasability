@@ -29,8 +29,8 @@ export async function postMessage(this: IotaRepo, user: IUser, data: {}): Promis
   // Insert the output address and amount to spend. The amount cannot be zero.
   try {
     const blockIdAndBlock = await client.buildAndPostBlock(secretManager, {
-      tag: utf8ToHex("MagicTrust"),
-      data: utf8ToHex("Tangle"),
+      // tag: utf8ToHex("MagicTrust"),
+      // data: utf8ToHex("Tangle"),
       output: {
         address: addresses[0],
         amount: "1000000",
